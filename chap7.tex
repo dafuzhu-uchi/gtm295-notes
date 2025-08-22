@@ -1,0 +1,50 @@
+\setcounter{section}{6}
+\section{Change of Variables}
+
+\begin{note}{Prop 7.1}
+    (1) Given $A\in\mathcal{B}(\mathbb{R}^d)$, it is not guaranteed that $f(A)\in\mathcal{B}(\mathbb{R}^d)$, even though $f$ is continuous. It will always be Lebesgue measurable, but not necessarily Borel measurable. 
+
+    Claim: All continuous functions are measurable.
+    \begin{proof}
+        Consider $(\mathbb{R}^d,\mathcal{B}(\mathbb{R}^d))$. $f:\mathbb{R}^d\to \mathbb{R}^d$ is continuous $\iff$ $\forall$ open set $U\subset \mathbb{R}^d$, $f^{-1}(U)$ is open in $\mathbb{R}^d$ (see Lemma 30 in \href{https://ocw.mit.edu/courses/18-s190-introduction-to-metric-spaces-january-iap-2023/mit18_s190iap23_lec2.pdf}{MIT18.S190 Lec2}). So if $f$ is continuous, then $\forall U\in \mathcal{B}(\mathbb{R}^d), f^{-1}(U)\in \mathcal{B}(\mathbb{R}^d)$. This is exactly the definition of $f$ being Boral measurable, Def 1.8.
+    \end{proof}
+    Since $M$ is invertible, $g:=f^{-1}$ is also continuous. Then $g^{-1}(A)$ is continuous, thus measurable. So $f(A)=(f^{-1})^{-1}(A)$ is measurable.
+
+    (2) For special cases $P$ is orthonormal matrix and $S$ is symmetric positive definite, we have $1=|\det(P)|,c=|\det(S)|$. 
+    \begin{lemma}[Polar Decomposition]
+        Any invertible matrix $M$ can be decomposed as $M=PS$ where $P$ is an orthonormal matrix and $S$ is symmetric positive definite (spd).
+    \end{lemma}
+    \begin{proof}
+        The intuition is rotate ($P$) and stretch out ($S$). If $M$ is invertible, then $M^TM$ is spd for sure. Let $S^2=M^TM$. Set $P=MS^{-1}$, now show that $P$ is orthonormal,
+        \[
+        P^TP=(MS^{-1})^TMS^{-1}=(S^{-1})^TM^TMS^{-1}=S^{-1}S^2S^{-1}=I
+        \]
+        So $M=PS$.
+    \end{proof}
+    Since $M$ is invertible, apply polar decomposition, $M=PS$ and $|\det(M)|=|\det(P)|\cdot|\det(S)|=c$.
+\end{note}
+
+\begin{note}{Thm 7.2}
+    Let $f=\mathbf{1}_A$, then $f(\varphi(u))=\mathbf{1}_A(\varphi(u))=1$ only if $\varphi(u)\in A,u\in \varphi^{-1}(A)$, otherwise $f(\varphi(u))=0$. So $\int_U f(\varphi(u))|J_{\varphi}(u)|\dif u=\int_{\varphi^{-1}(A)}|J_{\varphi}(u)|\dif u$. Note that $A\subset D, B:=\varphi^{-1}(A)\subset U, \varphi(B)=A$. Replace $A$ by $\varphi(B)$, 
+    \[
+    \lambda_d(\varphi(B))=\int_{\varphi^{-1}(\varphi(B))}|J_{\varphi}(u)|\dif u=\int_B|J_{\varphi}(u)|\dif u
+    \]
+    The remaining proof is way too complicated, so skip it. Being able to use polar coordinates technique would be enough.
+\end{note}
+
+\begin{note}{p.~128}
+    Recall equation (5.6),
+    \[
+    \gamma_{2k}=\frac{\pi^k}{k!},\quad \gamma_{2k+1}=\frac{\pi^k}{(k+\frac{1}{2})(k-\frac{1}{2})\cdots \frac{3}{2}\frac{1}{2}}
+    \]
+    and gamma function
+    \[
+    \Gamma(n)=(n-1)!,\quad \Gamma(\frac{1}{2}+n)=(n-\frac{1}{2})(n-\frac{3}{2})\cdots \frac{3}{2}\frac{1}{2}\sqrt{\pi}
+    \]
+    Consider $d=2k,k\in\mathbb{N}$ and $d=2k+1,k\in\mathbb{N}$ respectively,
+    If $d=2k,k\in\mathbb{N}$, then 
+    \[
+    \gamma_{2k}=\frac{\pi^k}{\Gamma(k+1)}=\frac{\pi^{d/2}}{\Gamma(d/2+1)},\quad \gamma_{2k+1}=\frac{\pi^k\cdot\sqrt{\pi}}{\Gamma(\frac{1}{2}+k+1)}=\frac{\pi^{d/2}}{\Gamma(d/2+1)}
+    \]
+    It generates a unified form of volume for high-dimensional balls.
+\end{note}

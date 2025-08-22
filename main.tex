@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[left=1.2in,right=1.2in,top=1in,bottom=1in]{geometry}
+\usepackage{amsthm, amsfonts, amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{marginnote} % 页边文字
+\reversemarginpar
+\newenvironment{note}[1]%
+{%
+  \def\notename{#1}% store argument in macro
+  \marginnote{\fbox{\texttt{\notename}}}[0cm]%
+  \label{\notename}
+  \par\smallskip\noindent\ignorespaces
+}
+{\par\smallskip}
+% define amsthm
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem*{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{remark}{Remark}
+
+\setlength{\parindent}{0pt}
+
+% define new command
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\renewcommand{\labelitemi}{\scriptsize$\bullet$}
+
+\title{Le Gall: Measure Theory, Probability, \\and Stochastic Processes\\ Companion Notes}
+\author{Taken by: Mark Zhu}
+\date{August 2025}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\include{chap1}
+\include{chap2}
+\include{chap3}
+\include{chap4}
+\include{chap5}
+\include{chap7}
+\include{chap8}
+\include{chap9}
+
+\end{document}

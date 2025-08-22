@@ -1,0 +1,134 @@
+\setcounter{section}{2}
+\section{Construction of Measures}
+
+\begin{note}{Def 3.1}
+    Can $\sigma$-subadditive $\Rightarrow \sigma$-additive? No. Counterexample: define
+    \[
+    \mu(A)=\begin{cases}
+        1 & A\neq \varnothing\\
+        0 & A=\varnothing
+    \end{cases}
+    \]
+    Then $\forall \{A_k\}_k$,
+    \[
+    \mu\left(
+    \bigcup_{k\ge 1}A_k
+    \right)=\mathbf{1}_{\{\exists k: A_k\neq\varnothing\}}\le \sum_{k\ge 1}\mathbf{1}_{\{A_k\neq\varnothing\}}=\sum_{k\ge 1}\mu(A_k)
+    \]
+    so $\sigma$-subadditive holds. Take $A_k=\{x_k\}$, all disjoint, but
+    \[
+    \mu\left(
+    \bigcup_{k\ge 1}A_k
+    \right)=\mu(\{x_1,\cdots,x_n\})=1\neq \infty\impliedby\sum_{k\ge 1}\mu(A_k)=\sum_{k\ge 1}1
+    \]
+\end{note}
+
+\begin{note}{Thm 3.3}
+    (i) How does the author come up with equation (3.1) to prove (i)? We want to show $\bigcup_{k\in\mathbb{N}}B_k\in\mathcal{M}$, then show
+    \[
+    \mu^*(A)\ge \underbrace{\mu^*\left(
+    A\cap \bigcup_{k\in\mathbb{N}}B_k
+    \right)}_{(1)}+\underbrace{\mu^*\left(
+    A\cap \left(\bigcup_{k\in\mathbb{N}}B_k\right)^c
+    \right)}_{(2)}
+    \]
+    Apply De Morgan's Law on (2). For (1), rewrite it as 
+    \[
+    \mu^*\left(
+    A\cap \bigcup_{k\in\mathbb{N}}B_k
+    \right)=\mu^*\left(
+     \bigcup_{k\in\mathbb{N}} (A\cap B_k)
+    \right)
+    \]
+    and by $\sigma$-subadditive of $\mu^*$, 
+    \[
+    \le \sum_{k\in\mathbb{N}}\mu^*(A\cap B_k)
+    \]
+    So the minimal requirement is
+    \[
+    \mu^*(A)=\sum_{k\in\mathbb{N}}\mu^*(A\cap B_k)+\mu^*\left(
+    A\cap \bigcap_{k\in\mathbb{N}}B_k^c\right)
+    \]
+    Plug in $k=1$ and check, $\mu^*(A)=\mu^*(A\cap B_1)+\mu^*(A\cap B_1^c)$, meaning the equation is very likely to hold, then we can safely explore the proof.
+
+    (ii) $\mathcal{M}(\mu^*)\subset \mathcal{P}(E)$, restriction of $\mu^*$ to $\mathcal{M}$ simply changes the domain of $\mu^*$ from $\mathcal{P}(E)$ to $\mathcal{M}$, maintaining the value unchanged. So for $\mu:=\mu^*|_{\mathcal{M}}$,
+    \[
+    \mu: \mathcal{M}\to [0,+\infty],\quad \mu(B)=\mu^*(B), \forall B\in \mathcal{M}
+    \]
+\end{note}
+
+\begin{note}{p.~44}
+    ``The infimum is over all countable covers of $A$ by open intervals $(a_i,b_i),i\in\mathbb{N}$ (it is trivial that such covers exist).'' This is not trivial, it's \emph{Heine-Borel Theorem}.
+\end{note}
+
+\begin{note}{p.~46}
+\begin{enumerate}
+    \item Summing up the two inequalities, the RHS gives,
+    \[
+    \begin{aligned}
+        \relax[(b_i\land \alpha)-(a_i\land \alpha)]+[(b_i\lor \alpha)-(a_i\lor \alpha)]&=[(b_i\land \alpha)+(b_i\lor \alpha)]-[(a_i\land \alpha)+(a_i\lor \alpha)]\\
+        &=(b_i+\alpha)-(a_i+\alpha)=b_i-a_i
+    \end{aligned}
+    \]
+    \item By Lem 3 in the lecture note \href{https://ocw.mit.edu/courses/18-s190-introduction-to-metric-spaces-january-iap-2023/mit18_s190iap23_lec4.pdf}{MIT18.S190 Lec4}, that a metric space $X$ being sequentially compact implies that $X$ is \emph{totally bounded} ($\forall \varepsilon>0,\exists x_1,\cdots,x_k\in X$ with finite $k$ such that $\{B_{\varepsilon}(x_i)\}_k$ is an open cover of $X$). It follows $\exists N, [a,b]\subset \bigcup_{i=1}^N (a_i,b_i)$.
+\end{enumerate}
+\end{note}
+
+\begin{note}{Prop 3.6}
+    $\mathcal{N}$ shows the situation when a set $A\notin\mathcal{A}$ but it's small enough to be negligible. Another name for $\bar{A}$ is \emph{completion}, and this proposition says there exists a unique extended measure that (1) gives the same value for all sets in $\mathcal{A}$, and (2) assigns zero measure to all sets in $\mathcal{N}$.
+    \begin{enumerate}
+        \item Verify that $\mathcal{B}$ is a $\sigma$-field
+        \begin{enumerate}
+            \item Let $B=B'=E\in\mathcal{A}, \mu(E\setminus E)=0\implies E\in\mathcal{B}$.
+            \item If $A\in\mathcal{B}$, then $\exists B,B'\in\mathcal{A}, B\subset A\subset B',\mu(B'\setminus B)=0$. $B^c\supset A^c\supset B'^c,\mu(B^c\setminus B'^c)=\mu(B^c\cap B')=\mu(B'\setminus B)=0$. So $A^c\in\mathcal{B}$.
+            \item If $A_n\in\mathcal{B},\forall n\ge 1$, then $\exists B_n,B_n'\in\mathcal{A}, B_n\subset A_n\subset B_n',\mu(B_n'\setminus B_n)=0$. Let $B:=\bigcup_{n\ge 1}B_n\subset \bigcup_{n\ge 1}A_n\subset \bigcup_{n\ge 1}B_n'=:B'$,
+            \[
+            \mu(B'\setminus B)=\mu\left(
+            \bigcup_{n\ge 1}B_n'\cap \bigcap_{n\ge 1}B_n^c
+            \right)=\mu\left(
+            \bigcup_{n\ge 1}(B_n'\cap \bigcap_{n\ge 1}B_n^c)
+            \right)
+            \]
+            By $\sigma$-subadditive,
+            \[
+            \le \sum_{n\ge 1}\mu (B_n'\cap \bigcap_{n\ge 1}B_n^c)\le \sum_{n\ge 1}\mu (B_n'\cap B_n^c)=\mu(B_n'\setminus B_n)=0
+            \]
+            So $\bigcup_{n\ge 1}A\in\mathcal{B}$.
+        \end{enumerate}
+    \end{enumerate}
+\end{note}
+
+\begin{note}{Thm 3.8}
+    (1) To prove the first statement, we used the pushforward of measure. $\sigma_x(\lambda)$ is a pushforward that has property $\lambda(x+A)=\lambda(A)$, we want to show $\sigma_x(\lambda)=\lambda$. Use Cor 1.19, and check if the conditions of this corollary hold. First, a $\mathcal{C}\subset\mathcal{A}$ such that $\sigma(\mathcal{C})=\mathcal{A}$, we find open box $\mathcal{C}=(-K,K)^d$. Second, $\forall A\in\mathcal{C}, \sigma_x(\lambda)(A)=\lambda(A)$, apparently the volume of a box does not change by shifting. So apply Cor 1.19 and get $\sigma_x(\lambda)=\lambda$.
+
+    (2) Since $\lambda([0,1)^d)=1$, cut $[0,1)^d$ into $n^d$ boxes, since we have already set $c=\mu\left([0,1)^d\right)$, 
+    \[
+    \mu\left([0,1)^d\right) = n^d \cdot \mu\left(\left[0,\tfrac{1}{n}\right)^d\right)
+\Rightarrow
+\mu\left(\left[0,\tfrac{1}{n}\right)^d\right) = \frac{c}{n^d}
+    \]
+\end{note}
+
+\begin{note}{Prop 3.9}
+    $F=C\setminus U$ is a compact set because $C$ is compact, $U$ is open, then $C\setminus U$ is a closed subset of a compact set, which is also compact. (See Lem 20 of \href{https://ocw.mit.edu/courses/18-s190-introduction-to-metric-spaces-january-iap-2023/mit18_s190iap23_lec3.pdf}{MIT18.S190 Lec3}).
+
+    Why $\lambda(F)\ge \lambda(C)-\lambda(U)$? Cut $C$ into two disjoint sets, $\lambda(C)=\lambda(C\cap U)+\lambda(C\setminus U)\le \lambda(U)+\lambda(C\setminus U)$.
+\end{note}
+
+\begin{note}{Thm 3.12}
+    (ii) statement: Given a function $F:\mathbb{R}\to\mathbb{R}_+$ with some properties (increasing, bounded, right-continuous, and $F(-\infty)=0$), then $\exists!$ measure $\mu$ such that $F(x)=\mu((-\infty,x])$. Construct 
+    \[
+    \mu^*(A)=\inf\left\{
+    \sum_{i\in\mathbb{N}}(F(b_i)-F(a_i)): A\subset \bigcup_{i\in\mathbb{N}}(a_i,b_i]
+    \right\}
+    \]
+    \begin{enumerate}
+        \item[(Step 1)] $\mu^*(A)$ is an outer measure, rf. Thm 3.4(i). (``increasing'', ``bounded'')
+        \item[(Step 2)] $\mathcal{B}(\mathbb{R})\subset \mathcal{M}(\mu^*)$, so that restricting $\mu^*$ on $\mathcal{B}(\mathbb{R})$ gives a measure $\mu$, rf. Thm 3.4(ii).
+        \item[(Step 3)] We still need to show $F(x)=\mu((-\infty,x])$. It suffices to check $F(b)-F(a)=\mu((a,b])$ (``$F(-\infty)=0$''). Let $\varepsilon>0$. Since $\mathbb{R}$ is compact, exists \emph{finite} collection of open sets that covers $[a+\varepsilon,b]$. 
+        \[
+        F(b)-F(a+\varepsilon)\le\sum_{i=1}^{\infty}(F(y_i)-F(x_i))+\varepsilon
+        \]
+        As $\varepsilon\to 0, F(a+\varepsilon)\to F(a)$ (``right-continuous''). Thus $F(b)-F(a)\le \mu((a,b])$. The reverse $\ge $ is by construction of $\mu^*$.
+    \end{enumerate}
+\end{note}

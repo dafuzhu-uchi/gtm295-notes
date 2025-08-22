@@ -1,0 +1,154 @@
+\part{Measure Theory}
+\setcounter{section}{0}
+\section{Measurable Spaces}
+\begin{note}{Def 1.2}
+    $\mathcal{C}$ is a collection of subsets of $E$.
+\end{note}
+
+\begin{note}{p.~4}
+    ``Clearly, closed subsets of $E$ are Borel sets.'' 
+    
+    Let $U\subset E$, and $U$ is open $\implies U\in\mathcal{B}(E)$. Since $\mathcal{B}(E)$ is a $\sigma$-field, $E\setminus U\in \mathcal{B}(E)$, which is closed.
+\end{note}
+
+\begin{note}{Lem 1.5}
+    To prove $\mathcal{B}(E)\otimes \mathcal{B}(F)\subset \mathcal{B}(E\times F)$, consider the following class
+    \[\mathcal{C}_B=\{A\in \mathcal{B}(E):A\times B\in \mathcal{B}(E\times F)\}\]
+    Fix $B\subset F$ be open. $\mathcal{B}(E\times F)=\sigma(\mathcal{O})$ where $\mathcal{O}=\{\text{all open subsets of }E\times F\}$, and $E\times F=\{(e,f): e\in E,f\in F\}$. If $A\subset E$ is also open, then $A\times B\in \mathcal{B}(E\times F),A\in \mathcal{C}_B,\mathcal{B}(E)\subset \mathcal{C}_B$. Clearly $\mathcal{C}_B\subset \mathcal{B}(E)$, so $\mathcal{C}_B=\mathcal{B}(E)$.
+\end{note}
+
+\begin{note}{p.~7}
+    In the proof of property (4), discuss why
+    \[
+    \mu\left(
+    B_1\setminus \bigcap_{n\in \mathbb{N}}B_n
+    \right)=\mu\left(
+    \bigcup_{n\in \mathbb{N}}A_n
+    \right)
+    \]
+    Derive $B_1\setminus \bigcap_{n\in \mathbb{N}}B_n=B_1\cap(\bigcap_{n\in \mathbb{N}}B_n)^c=B_1\cap(\bigcup_{n\in \mathbb{N}}B_n^c)=\bigcup_{n\in \mathbb{N}}(B_1\cap B_n^c)=\bigcup_{n\in \mathbb{N}}A_n$.
+\end{note}
+
+\begin{note}{p.~9}
+    Discuss the equivalence of limsup and liminf for sequences of numbers $\{a_n\}$ and of sets $\{A_n\}$. Recall
+    \[
+    \limsup_{n\to\infty}\{a_n\}=\lim_{n\to\infty}\sup_{k\ge n}\{a_k\},\quad \limsup_{n\to\infty}A_n=\bigcap_{n=1}^{\infty}\bigcup_{k=n}^{\infty}A_k
+    \]
+    Define an indicator function
+    \[
+    a_n(x)=\begin{cases}
+        1 & x\in A_n\\
+        0 & x\notin A_n
+    \end{cases}
+    \]
+    $\sup_{k\ge n}\{a_k(x)\}=1$ if $\exists k\ge n$ such that $x\in A_k$. $\sup_{k\ge n}\{a_k(x)\}=0$ otherwise. Take limits, then $\lim_{n\to\infty}\sup_{k\ge n}\{a_k\}=1$ if $\forall n\ge 1,\exists k\ge n$ such that $x\in A_k$. 
+    
+    Note that $\forall n\ge 1\iff \bigcap_{n\ge 1}$; $\exists k\ge n\iff \bigcup_{k\ge n}$, so
+    \[
+    \limsup_{n\to\infty}\{a_n(x)\}=\begin{cases}
+        1 & x\in \bigcap_{n=1}^{\infty}\bigcup_{k=n}^{\infty}A_k\\
+        0 & \text{otherwise}
+    \end{cases}
+    \]
+    For liminf, it's more natural to consider the inverse statement. $\inf_{k\ge n} \{a_k(x)\}=0$ if $\exists k\ge n$ such that $x\notin A_k$, so $a_k(x)=0$. $\lim_{n\to\infty}\inf_{k\ge n}\{a_k\}=0$ if $\forall n\ge 1,\exists k\ge n$ such that $x\notin A_k$. That means if $\exists n\ge 1,\forall k\ge n, x\in A_k$, then $\lim_{n\to\infty}\inf_{k\ge n}\{a_k\}=1$. Thus
+    \[
+    \liminf_{n\to\infty}\{a_n(x)\}=\begin{cases}
+        1 & x\in \bigcup_{n=1}^{\infty}\bigcap_{k=n}^{\infty}A_k\\
+        0 & \text{otherwise}
+    \end{cases}
+    \]
+    Conclusion: the gap between real numbers and sets is closed by \emph{indicator functions}.
+\end{note}
+
+\begin{note}{Lem 1.7}
+    Because $\bigcap_{k=n}^{\infty}A_k\subset A_k, $ for all $k\ge n$,
+    \[
+    \mu\left(\bigcap_{k=n}^{\infty}A_k\right)\le \mu(A_k)
+    \]
+    So $\mu\left(\bigcap_{k=n}^{\infty}A_k\right)\le \inf_{k\ge n}\mu(A_k)$. Since $\bigcap_{k=n}^{\infty}A_k$ is increasing with respect to $n$, use property (3) in p. 6, and get the desired result.
+\end{note}
+
+\begin{note}{Prop 1.10}
+    To let $f$ measurable, two conditions should suffice
+    \begin{enumerate}
+        \item $\exists $ generator $\mathcal{C}\subset \mathcal{B}$, such that $\sigma(\mathcal{C})=\mathcal{B}$
+        \item $f$ is measurable on $\mathcal{C}$
+    \end{enumerate}
+    By Def 1.8 and the second condition, $\forall B\in \mathcal{C},f^{-1}(B)\in \mathcal{A}$. So $B\in \mathcal{G},\mathcal{C}\subset\mathcal{G}$. Now show that $\mathcal{G}$ is a $\sigma$-field.
+    \begin{itemize}
+        \item $F\in\mathcal{B},f^{-1}(F)=E\in \mathcal{A}\implies F\in \mathcal{G}$
+        \item Let $B\in \mathcal{G}$, so $f^{-1}(B)\in \mathcal{A}$. Since $\mathcal{A}$ is a $\sigma$-field, $\mathcal{A}\ni E\setminus f^{-1}(B)=f^{-1}(F\setminus B)$, so $B^c=F\setminus B\in \mathcal{G}$
+        \item If $B_n\in \mathcal{G}$, then $f^{-1}(B_n)\in \mathcal{A},f^{-1}(\bigcup_{n\ge 1} B_n)=\bigcup_{n\ge 1} f^{-1}(B_n)\in \mathcal{A}$. So $\bigcup_{n\ge 1} B_n\in \mathcal{G}$
+    \end{itemize}
+    So $\mathcal{G}$ is a $\sigma$-field. Since $\mathcal{C}\subset\mathcal{G}$, $\mathcal{B}=\sigma(\mathcal{C})\subset\mathcal{G}$. By construction of $\mathcal{G}$, $\mathcal{G}\subset \mathcal{B}$. Thus $\mathcal{G}=\mathcal{B}\implies \forall B\in \mathcal{B},f^{-1}(B)\in \mathcal{A}$, so $f$ is measurable.
+\end{note}
+
+\begin{note}{Lem 1.15}
+\begin{enumerate}
+    \item ``The set $A$ of all $x\in E$ such that $f_n(x)$ converges in $\mathbb{R}$ as $n\to\infty$ is measurable'' where `converges' means $\limsup_n f_n=\liminf_nf_n$. 
+
+    \item $A=G^{-1}(\Delta)$ is followed by $\Delta$ is a measurable set, $G$ is a measurable function, so $G^{-1}(\Delta)\in\mathcal{A}$ under measurable space $(E,\mathcal{A})$.
+
+    \item Then move on to the second statement that $h:E\to\mathbb{R}$ is measurable. If $\forall F\subset \mathbb{R}, h^{-1}(F)\in \mathcal{A}$, i.e. $h^{-1}(F)$ is a measurable set, then $h$ is a measurable function. 
+    
+    (Case 1) If $0\notin F$, then $h$ collapses into $h(x)=\lim_n f_n(x),\forall x\in A$. Then $h^{-1}(F)$ is given by
+    \[
+    h^{-1}(F)=A\cap \{x\in E:\limsup f_n(x)\in F\}
+    \]
+    and both sets on the right are measurable.
+    
+    (Case 2) If $0\in F$, then $0\notin F^c$.
+    \[
+    x \in (h^{-1}(F))^c \iff h(x) \notin F \iff h(x) \in F^c \iff x \in h^{-1}(F^c)
+    \]
+    which means $(h^{-1}(F))^c=h^{-1}(F^c)$. From Case 1 we know $h^{-1}(F^c)$ is a measurable set, so does $(h^{-1}(F))^c$. Because the collection of measurable sets is a $\sigma$-field (by Def 1.1), $h^{-1}(F)$ is also measurable.
+\end{enumerate}
+\end{note}
+
+\begin{note}{p.~13}
+    ``Any $\sigma$-field is also a monotone class. Conversely, a monotone class $\mathcal{M}$ is a $\sigma$-field if and only if it is closed under finite intersections.''
+
+    Question: How `closure under finite intersections' helps $\mathcal{M}$ becoming a $\sigma$-field?
+
+    For property (ii), set $B=E$, then $A^c=E\setminus A\in \mathcal{M}$. For property (iii), given $\mathcal{M}$ is closed under finite intersections, let $A,B\in \mathcal{M}, A^c\cap B^c\in\mathcal{M}\implies A\cup B=(A^c\cap B^c)^c$. So it's also closed under finite union. Define
+    \[
+    B_n=\bigcup_{k=1}^n A_k
+    \]
+    clearly $B_n\subset B_{n+1}$. Apply (iii), 
+    \[
+    \mathcal{M}\ni\bigcup_{n\in\mathbb{N}}B_n=\bigcup_{n\in\mathbb{N}}\bigcup_{k=1}^n A_k=\bigcup_{k\in\mathbb{N}} A_k
+    \]
+    without the restriction of $A_n\subset A_{n+1}$.
+\end{note}
+
+\begin{note}{Thm 1.18}
+    Explanation about the proof
+    \begin{enumerate}
+        \item When verifying $\mathcal{M}_A$ is a monotone class, in the complement property
+        \[
+        \mathcal{M}(\mathcal{C})\ni(A\cap B')\setminus (A\cap B)=A\cap(B'\setminus B)
+        \]
+        is based on the construction of $\mathcal{M}_A$ and nothing else.
+        \item Before the last step, we reached the result
+        \[
+        \forall A\in \mathcal{C},\forall B\in \mathcal{M}(\mathcal{C}),A\cap B\in \mathcal{M}(\mathcal{C})
+        \]
+        But to show $\mathcal{M}(\mathcal{C})$ is closed under finite intersections, we need 
+        \[
+        \forall A,B\in \mathcal{M}(\mathcal{C}),A\cap B\in \mathcal{M}(\mathcal{C})
+        \]
+        Previously, we fixed $A\in \mathcal{C}$ to reach the property $\mathcal{C}\subset \mathcal{M}_A$ and everything follows. So we cannot simply replace $A\in \mathcal{C}$ by $A\in \mathcal{M}(\mathcal{C})$. Here's what we do:
+
+        Fix $B\in \mathcal{C}$. Now $A$ can be an arbitrary set in $\mathcal{M}(\mathcal{C})$. Use the conclusion above, $A\cap B\in \mathcal{M}(\mathcal{C})$, so $B\in \mathcal{M}_A$. That is, $\forall B\in \mathcal{C}, B\in \mathcal{M}_A$, thus $\mathcal{C}\subset \mathcal{M}_A,\forall A\in\mathcal{M}(\mathcal{C})$. Since $\mathcal{M}_A$ is a monotone class, $\mathcal{M}(\mathcal{C})\subset \mathcal{M}_A$, $\mathcal{M}(\mathcal{C})$ is closed under finite intersection.
+    \end{enumerate}
+\end{note}
+
+\begin{note}{Cor 1.19}
+    In (1), $\mu(E) = v(E)$ ensures that $\mathcal{G}$ satisfies its first property for being a monotone class. In (2), $\mu_n,v_n$ are respective restrictions of $\mu,v$ to $E_n$, i.e. 
+    \[\mu_n(A)=\mu(A\cap E_n),\quad \forall A\in \mathcal{A}\]
+    $\mu(E_n)=v(E_n)$ allows us to apply (1) to $\mu_n,v_n$, $\implies \mu_n=v_n$. Then
+    \[
+    \mu(A)=\mu(A\cap E)=\mu\left(A\cap \bigcup_{n\in\mathbb{N}}E_n\right)=\mu\left(\bigcup_{n\in\mathbb{N}}(A\cap E_n)\right)=\lim_{n\to\infty}\uparrow \mu(A\cap E_n)
+    \]
+    by property (3) in p. 6, where $A\cap E_n$ is increasing.
+\end{note}

@@ -1,0 +1,100 @@
+\setcounter{section}{4}
+\section{Product Measures}
+
+\begin{note}{Prop 5.1}
+    (i) The goal is to show $\mathcal{C}=\mathcal{A}\otimes \mathcal{B}$. So $\mathcal{C}$ should contain all measurable rectangles like $\mathcal{A}\otimes \mathcal{B}$, and should be a $\sigma$-field.
+    \begin{enumerate}
+        \item $\forall A\in\mathcal{A},B\in\mathcal{B}$, let $C=A\times B\in\mathcal{C}$, then
+        \[
+        C_x=\{y\in F:(x,y)\in A\times B\}=\begin{cases}
+            B & \text{if } x\in A\\
+            \varnothing & \text{if } x\notin A
+        \end{cases}
+        \]
+        \item $\mathcal{C}$ is a $\sigma$-field.
+        \begin{enumerate}
+            \item Let $C=E\times F,x\in E,C_x=F\in\mathcal{B}$, so $E\times F\in\mathcal{C}$
+            \item If $C\in\mathcal{C}$, then $C_x\in\mathcal{B}$.
+            \[
+            (C^c)_x=\{y\in F:(x,y)\in (A\times B)^c\}=(C_x)^c\in\mathcal{B}
+            \]
+            since $\mathcal{B}$ is a $\sigma$-field and is closed under complements.
+            \item If $C_n\in\mathcal{C}$, then $(C_n)_x\in\mathcal{B}$.
+            \[
+            \left(
+            \bigcup_{n\ge 1}C_n
+            \right)_x
+            =\{y\in F:(x,y)\in\bigcup_{n\ge 1}C_n\}
+            =\bigcup_{n\ge 1}\{y\in F:(x,y)\in C_n\}
+            =\bigcup_{n\ge 1}(C_n)_x\in\mathcal{B}
+            \]
+            since $\mathcal{B}$ is a $\sigma$-field.
+        \end{enumerate}
+    \end{enumerate}
+    (ii) The text already derived $f_x^{-1}(D)=(f^{-1}(D))_x$. Because $D\in\mathcal{G}$ and $f$ is measurable, $f^{-1}(D)\in \mathcal{A}\otimes\mathcal{B}$ by Def 1.8. By (i), $(f^{-1}(D))_x\in\mathcal{B}$, so $f_x^{-1}(D)\in\mathcal{B}$, which means $f_x$ is $\mathcal{B}$-measurable by Def 1.8. (ii) is the main result of this proposition, it tells us if $f:E\times F\to G$, then $f_x(y), f^y(x)$ are measurable on the corresponding $\sigma$-field of $y$ and $x$.
+\end{note}
+
+\begin{note}{Thm 5.2}
+    A trick to show uniqueness is using $\sigma$-finite together with Cor 1.19. Another trick to show $x \mapsto v\left(C_{x}\right)$ is $\mathcal{A}$-measurable for all sets is constructing a class
+    \[
+    \mathcal{G} = \{ C \in \mathcal{A} \otimes \mathcal{B} : x \mapsto \nu(C_x) \text{ is } \mathcal{A}\text{-measurable} \}
+    \]
+    and show $\mathcal{G}$ equals the original $\sigma$-field $\mathcal{A}\otimes \mathcal{B}$. The structure is always: first suppose finite measures, then extend to $\sigma$-finite by restricting the measures on partitions of underlying set $E$.
+
+    In this proof, we used Cor 1.19 for uniqueness. As for existence, assume $v$ is finite, define
+    \[
+    m(C):=\int_E v(C_x)\mu(\dif x).
+    \]
+    Consider the measurable spaces $(E,\mathcal{A},\mu)$ and $(F,\mathcal{B},v)$. Verify $v(C_x)$ is valid, that is $C_x\in \mathcal{B}$ (Prop 5.1). Then verify $x\mapsto\nu\left(C_{x}\right)$ is $\mathcal{A}$-measurable, so we can legally take integral (Thm 1.18). Now release $v$ from finite to $\sigma$-finite. Then check $m(C)$ is actually a measure (Def 1.6). Because 
+    \[
+    v(C_x)=\begin{cases}
+        v(B) & \text{if }x\in A\\
+        0 & \text{if }x\notin A
+    \end{cases},\implies v(C_x)=\mathbf{1}_A(x) v(B)
+    \]
+    the property in (i) holds,
+    \[
+    m(C)=v(B)\int_E \mathbf{1}_A(x) \mu(\dif x)=v(B)\mu(A)
+    \]
+\end{note}
+
+\begin{note}{Thm 5.3}
+    We had a hard time proving Thm 5.2, which says
+    \[
+    \mu\otimes v(C)=\int_E v(C_x)\mu(\dif x)=\int_F \mu(C^y)v(\dif y).
+    \]
+    This is a special case of Thm 5.3 with $f=\mathbf{1}_{C}$, 
+    \[
+    \int_{E \times F} f \mathrm{~d} \mu \otimes v=\int_{E}\left(\int_{F} f(x, y) v(\mathrm{d} y)\right) \mu(\mathrm{d} x)=\int_{F}\left(\int_{E} f(x, y) \mu(\mathrm{d} x)\right) v(\mathrm{d} y)
+    \]
+    The extension from Thm 5.2 to 5.3 follows the route: indicator function $\to$ simple function $\to$ approximation (Prop 2.5(i)). Thm 5.3 applies only to nonnegative $f$, Thm 5.4 removed this condition. 
+\end{note}
+
+\begin{note}{p.~95}
+    Write $\varphi(s,t)=\mathbf{1}_{\{s\le t\}}f(t)g(s)$, which is on space $([a,b],\mathcal{B}([a,b]),\lambda)\times ([a,b],\mathcal{B}([a,b]),\lambda)$. 
+    
+    Consider $h(s,t):=|f(t)g(s)|$ is nonnegative and measurable, apply Thm 5.3, 
+    \[
+    \begin{aligned}
+        \int_{[a,b]^2}h(s,t)\dif (\lambda\otimes\lambda)
+    &=\int_{a}^{b}\left(\int_{a}^{b}|f(t)||g(s)| \lambda(\dif s)\right) \lambda(\dif t)\\
+     &=\int_{a}^{b}|f(t)|\left(\int_{a}^{b}|g(s)| \lambda(\dif s)\right) \lambda(\dif t)
+      =\left(\int_{a}^{b}|g(s)| \dif s\right)\left(\int_{a}^{b}|f(t)| \dif t\right)
+    \end{aligned}
+    \]
+    Notation $\lambda(\dif x)\iff \dif x$. Since $f,g$ are integrable, $\varphi(s,t)\in\mathcal{L}^1(\lambda\otimes\lambda)$. So
+    \[
+    \int_{a}^{b}\left(\int_{a}^{b} \varphi(s,t) \mathrm{d} s\right) \mathrm{d} t=\int_{a}^{b}\left(\int_{a}^{b} \varphi(s,t) \mathrm{d} t\right) \mathrm{d} s
+    \]
+\end{note}
+
+\begin{note}{p.~100}
+    Derive $I_n=n/(n+1)\cdot I_{n-2}$. By symmetry, $I_n=2\int_0^1 (1-x^2)^{n/2}\dif x$. Let $x=\sin\theta,\dif x=\cos\theta\dif\theta$, $x\in [0,1]\implies \theta\in[0,\pi/2]$.
+    \[
+    I_n = 2 \int_0^1 (1 - x^2)^{n/2} \dif x = 2 \int_0^{\pi/2} \cos^n \theta \cdot \cos \theta \, \dif\theta = 2 \int_0^{\pi/2} \cos^{n+1} \theta \, \dif\theta
+    \]
+    Integrate by part, let $u=\cos^n\theta,\dif v=\cos\theta\dif \theta$. This result in
+    \[
+    \int_0^{\pi/2} \cos^{n+1} \theta \, \dif\theta=n\int_0^{\pi/2} (1-\cos^2\theta)\cos^{n - 1} \theta \, \dif\theta\implies I_n=\frac{n}{n+1}I_{n-2}
+    \]
+\end{note}

@@ -1,0 +1,115 @@
+\part{Probability Theory}
+\setcounter{section}{7}
+\section{Foundations of Probability Theory}
+
+\begin{note}{Def 8.2}
+$\omega$ is hidden in formulas of probability theory.
+\[
+\mathbb{P}(X^{-1}(B))=\mathbb{P}(\{\omega\in\Omega:\omega\in X^{-1}(B)\})=\mathbb{P}(\{\omega\in\Omega:X(\omega)\in B\})=:\mathbb{P}(X\in B)
+\]
+\end{note}
+
+\begin{note}{Prop 8.4}
+    Review Fubini theorem, the only condition is $f\in\mathcal{L}^1(\mu\otimes v)$ and $\mu,v$ are $\sigma$-finite. In this case, $X$ is defined on $(\Omega,\mathcal{A},\mathbb{P})$.
+    \[
+    \{X\ge x\}=X^{-1}([x,+\infty))
+    \]
+    $X$ is a measurable function, $[x,+\infty)\subset \mathbb{R}$ is a Borel set, therefore $\{x\le X\}\in\mathcal{A}$ is a measurable subset in $\Omega$. $\mathbf{1}_{\{x\le X\}}:\Omega\to\{0,1\}$, check $\forall B\in\mathcal{P}(\{0,1\}),$  so $B\in\mathcal{B}(\mathbb{R})$,
+    \[
+    \mathbf{1}_{\{x\le X\}}^{-1}(B)=\{\omega\in\Omega: \mathbf{1}_{\{x\le X\}}(\omega)\in B\}\in\mathcal{A}
+    \]
+    so $\mathbf{1}_{\{x\le X\}}$ is a Lebesgue measurable function. $\mathbf{1}_{\{x\le X\}}\in \mathcal{L}^1(\mathbb{P}\otimes \lambda)$, Fubini theorem is applicable.
+\end{note}
+
+\begin{note}{Prop 8.5}
+    Recall Prop 2.9,
+    \[
+    \int_E h(\varphi(x))\mu(\dif x)=\int_F h(y)v(\dif y)
+    \]
+    here $\mu=\mathbb{P},v=\mathbb{P}_X,\varphi=X$,
+    \[
+    \mathbb{E}[f(X)]=\int_{\Omega}f(X(\omega))\mathbb{P}(\dif\omega)=\int_E f(x)\mathbb{P}_X(\dif x)
+    \]
+\end{note}
+
+\begin{note}{p.~142}
+    In the discussion after Prop 8.5, the text
+    \begin{quote}
+        Since the indicator function of an open rectangle is the increasing limit of a sequence of continuous functions with compact support, the probability measure \( \mu \) is also determined by the values of \( \int \varphi(x) \mu(\mathrm{d} x) \) when \( \varphi \) varies in the space \( C_{c}\left(\mathbb{R}^{d}\right) \) of all continuous functions with compact support from \( \mathbb{R}^{d} \) into \( \mathbb{R} \). 
+    \end{quote}
+    means any indicator function of a rectangle $\mathbf{1}_R$ can be approximated from below by a sequence $\varphi_n\in C_c(\mathbb{R}^d)$. See a construction of Lemma 2.2 in \href{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/3d4cc88026d44a01f936cd6a0aa995cb_MIT18_102s20_lec_FA.pdf}{MIT18.102}. So
+    \[
+    \mathbf{1}_R(x) = \lim_{n \to \infty} \varphi_n(x) \quad \text{with each } \varphi_n \in C_c(\mathbb{R}^d), \; \varphi_n \leq \mathbf{1}_R
+    \]
+    By the \emph{monotone convergence theorem},
+    $$
+    \mu(R) = \int \mathbf{1}_R(x) \, \mu(dx) = \lim_{n \to \infty} \int \varphi_n(x) \, \mu(dx)
+    $$
+\end{note}
+
+\begin{note}{Prop 8.9}
+    $\mathbf{1}_{A_i}=\mathbf{1}_{B_i}\circ X$. 
+    \[
+1_{A_i}(\omega) = \begin{cases}
+1 & \text{if } \omega \in A_i, \\
+0 & \text{otherwise},
+\end{cases}
+= \begin{cases}
+1 & \text{if } X(\omega) \in B_i, \\
+0 & \text{otherwise},
+\end{cases}
+= 1_{B_i}(X(\omega)) = (1_{B_i} \circ X)(\omega).
+\]
+\end{note}
+
+\begin{note}{p.~153}
+    Show Markov inequality. Let $A_a=\{\omega\in\Omega: X(\omega)\ge a\}, X\ge a\mathbf{1}_{A_a}.$ 
+    \[
+    \int X\dif \mathbb{P}\ge a\int\mathbf{1}_{A_a}\dif \mathbb{P}=a\mathbb{P}(A_a),\implies \mathbb{P}(A_a)\le\frac{1}{a}\int\mathbf{1}_{A_a}\dif \mathbb{P}=\frac{1}{a}\mathbb{E}[X]
+    \]
+\end{note}
+
+\begin{note}{Prop 8.13}
+    Given $\alpha_0=\mathbb{E}[X]$ in equation (8.5), then 
+    \[
+    Z=\mathbb{E}[X]+\sum_{j=1}^n \alpha_j (Y_j-\mathbb{E}[Y_j])
+    \]
+    To let equation (8.6) holds, plug in $Z$,
+    \[
+    \mathbb{E}[(X-\mathbb{E}[X])(Y_k-\mathbb{E}[Y_k])]-\sum_{j=1}^n \alpha_j \mathbb{E}[(Y_j-\mathbb{E}[Y_j])(Y_k-\mathbb{E}[Y_k])]=0
+    \]
+    This is exactly $\text{cov}(X,Y_k)=\sum_{j=1}^n \alpha_j\text{cov}(Y_j,Y_k)$.
+\end{note}
+
+\begin{note}{Def 8.14}
+    A probability measure is absolutely continuous with respect to Lebesgue measure if and only if it has a density function $\varphi(x)$. Then applies Radon-Nikodym theorem, $\mathbb{P}_X(\dif x)=\varphi(x)\lambda(\dif x)$. Recall \emph{Fourier Transform} in p.~32,
+    \[
+    \hat{\varphi}(\xi)=\int e^{i\xi x}\varphi(x)\lambda(\dif x)=\int e^{i\xi x}\mathbb{P}_X(\dif x)=:\Phi(\xi)
+    \]
+\end{note}
+
+\begin{note}{Lem 8.15}
+    (1) Parity argument: $e^{i\xi X}=\cos(\xi X)+i\sin(\xi X)$.
+
+    (2) To use Thm 2.13, let $h(u,x)=e^{-x^2/2}\cos(ux)$, find a function $g(x)$ such that 
+    \[
+    |h(u,x)-h(\xi,x)|\le g(x)\cdot |u-\xi|
+    \]
+    By mean value theorem, $\exists c\in(u,\xi)$ (or $(\xi,u)$), such that $|\cos(ux)-\cos(\xi x)|=|-x\sin(cx)||u-\xi|.$
+    \[
+    |e^{-x^2/2}(\cos(ux)-\cos(\xi x))|\le e^{-x^2/2}|\cos(ux)-\cos(\xi x)|\le e^{-x^2/2}|x|\cdot|u-\xi|=g(x)\cdot|u-\xi|
+    \]
+    where $g(x)=|x|\cdot e^{-x^2/2}\in\mathcal{L}^1_+$. So condition (ii) satisfies.
+
+    (3) If $Z\sim \mathcal{N}(0,1)$, then $\Phi_Z(\xi)=\exp(-\xi^2/2)$. For $X=m+\sigma Z\sim \mathcal{N}(m,\sigma^2)$,
+    \[
+    \Phi_X(\xi)=\mathbb{E}[\exp(i\xi X)]=\mathbb{E}[\exp(i\xi (m+\sigma Z))]=e^{i\xi m}\cdot \Phi_Z(\sigma\xi)=e^{i\xi m}\cdot e^{-\sigma^2\xi^2/2}
+    \]
+\end{note}
+
+\begin{note}{Thm 8.16}
+    (i) To establish (1), use Lem 8.15 to find that $X\sim\mathcal{N}(0,1/\sigma)$, and use Def 8.14 to write
+    \[
+    \exp(-\frac{x^2}{2\sigma^2})= \Phi_X(x)= \int_{\mathbb{R}}e^{ix\cdot \xi}g_{1/\sigma}(\xi)\dif \xi
+    \]
+\end{note}
