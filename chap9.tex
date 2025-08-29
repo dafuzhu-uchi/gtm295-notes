@@ -16,3 +16,97 @@
     \mathbb{P}_{X_{1}} \otimes \cdots \otimes \mathbb{P}_{X_{n}}\left(F_{1} \times \cdots \times F_{n}\right)=\prod_{i=1}^{n} \mathbb{P}_{X_{i}}\left(F_{i}\right)
     \]
 \end{note}
+
+\begin{note}{Prop 9.7}
+    Check that $\mathcal{M}_1$ is a monotone class.
+    
+    (i) Let $C_1=\Omega$, then $\Omega\in\mathcal{M}_1$.  (ii) If $B,B'\in\mathcal{M}_1$ and $B\subset B'$, 
+    \[
+    \mathbb{P}(B'\cap C_2\cap\cdots\cap C_n)=\mathbb{P}(B\cap C_2\cap\cdots\cap C_n)+\mathbb{P}((B'\setminus B)\cap C_2\cap\cdots\cap C_n)
+    \]
+    and 
+    \[
+    \mathbb{P}((B'\setminus B)\cap C_2\cap\cdots\cap C_n)=(\mathbb{P}(B')-\mathbb{P}(B))\cdot\mathbb{P}(C_2)\cdots\mathbb{P}(C_n)=\mathbb{P}(B'\setminus B)\mathbb{P}(C_2)\cdots\mathbb{P}(C_n)
+    \]
+    Thus $B'\setminus B\in\mathcal{M}_1$. (iii) If $\{B_j\}\in\mathcal{M}_1$, where $B_j\subset B_{j+1}$,
+    \[
+    \begin{aligned}
+        \mathbb{P}\left((\bigcup_{j=1}^{\infty}B_j)\cap C_2\cap\cdots\cap C_n\right)
+        &=\mathbb{P}\left(\bigcup_{j=1}^{\infty}(B_j\cap C_2\cap\cdots\cap C_n)\right)\\
+        &=\lim_{j\to\infty}\uparrow \mathbb{P}\left(B_j\cap C_2\cap\cdots\cap C_n\right)\\
+        &=\lim_{j\to\infty}\uparrow \mathbb{P}(B_j)\mathbb{P}(C_2)\cdots\mathbb{P}(C_n)\\
+        &=\mathbb{P}\left(
+        \bigcup_{j=1}^{\infty}B_j
+        \right)\mathbb{P}(C_2)\cdots\mathbb{P}(C_n)
+    \end{aligned}
+    \]
+    Thus $\bigcup_{j=1}^{\infty}B_j\in\mathcal{M}_1$.
+\end{note}
+
+\begin{note}{p.~175}
+    For every $j\in\{1,\cdots,p\}$, construct
+    \[
+    \mathcal{C}_j=\{B_{n_{j-1}+1}\cap\cdots\cap B_{n_j}: B_i\in\mathcal{B}_i,i\in\{n_{j-1}+1,\cdots,n_j\}\}
+    \]
+    Show $\mathcal{C}_j$ is closed under finite intersections. Consider $\mathcal{C}_j^{(1)},\mathcal{C}_j^{(2)}$, then
+    \[
+    \mathcal{C}_j^{(1)}\cap\mathcal{C}_j^{(2)}=\left(
+    \bigcap_{i=n_{j-1}+1}^{n_j}B_i^{(1)}
+    \right)\cap\left(
+    \bigcap_{i=n_{j-1}+1}^{n_j}B_i^{(2)}
+    \right)=\bigcap_{i=n_{j-1}+1}^{n_j}(B_i^{(1)}\cap B_i^{(2)})
+    \]
+    and $B_i^{(1)}\cap B_i^{(2)}\in\mathcal{B}_i$ because $\mathcal{B}_i$ is closed under finite intersections. So $\mathcal{C}_j^{(1)}\cap\mathcal{C}_j^{(2)}\in\mathcal{C}_j$.
+\end{note}
+
+\begin{note}{Lem 9.11}
+    Show that $\sum\mathbb{P}(A_k)=\infty$ implies $\prod_{k=n_0}^n (1-\mathbb{P}(A_k))=0$. For $0<x<1,\ln(1-x)<-x$. Let $x=\mathbb{P}(A_k)$, then $\ln(1-\mathbb{P}(A_k))<-\mathbb{P}(A_k)$.
+    \[
+    \ln\prod_{k=n_0}^n (1-\mathbb{P}(A_k))=\sum_{k=n_0}^n\ln(1-\mathbb{P}(A_k))\le -\sum_{k=n_0}^n\mathbb{P}(A_k)\to -\infty
+    \]
+    So $\prod_{k=n_0}^n(1-\mathbb{P}(A_k))\to 0$ as $n\to\infty$.
+\end{note}
+
+\begin{note}{p.~179}
+Show $X_n(\omega)\in \{0,1\}.$ For all $t\in\mathbb{R}, 2\lfloor t\rfloor\le\lfloor 2t\rfloor\le 2\lfloor t\rfloor+1$. Let $t=2^{n-1}\omega$, then $\lfloor 2t\rfloor-2\lfloor t\rfloor\in\{0,1\}$. Since $\omega\in[0,1), \lfloor \omega\rfloor=0$.
+$$
+\begin{aligned}
+\sum_{k=1}^n X_k(\omega)\,2^{\,n-k}
+&=\sum_{k=1}^n\big(\lfloor 2^k\omega\rfloor-2\lfloor 2^{k-1}\omega\rfloor\big)2^{\,n-k}\\
+&=\sum_{k=1}^n\lfloor 2^k\omega\rfloor\,2^{\,n-k}-\sum_{k=1}^n\lfloor 2^{k-1}\omega\rfloor\,2^{\,n-k+1}\\
+&=\sum_{j=1}^n\lfloor 2^j\omega\rfloor\,2^{\,n-j}-\sum_{j=0}^{n-1}\lfloor 2^{j}\omega\rfloor\,2^{\,n-j}\\
+&=\lfloor 2^n\omega\rfloor-\lfloor 2^0\omega\rfloor\,2^{\,n}
+=\lfloor 2^n\omega\rfloor
+\end{aligned}
+$$
+So $0\le 2^n\omega-\sum_{k=1}^n X_k(\omega)\,2^{\,n-k}=2^n\omega-\lfloor 2^n\omega\rfloor<1$. Divide both sides by $2^n$ and get the desired result.
+\end{note}
+
+\begin{note}{p.~182}
+    $\mu *v$ is the pushforward measure of $\mu\otimes v$ under $f(x,y)=x+y$, i.e. $\forall B\in \mathbb{R}^d, \mu *v(B)=\mu\otimes v (f^{-1}(B))$. By Prop 2.9,
+    \[
+    \int_{\mathbb{R}^d} \varphi(z)\mu*z(\dif z)
+    =\int_{\mathbb{R}^d\times \mathbb{R}^d}\varphi(f(x,y))\dif \mu\otimes v
+    =\int_{\mathbb{R}^d}\int_{\mathbb{R}^d}\varphi(x+y)\mu(\dif x)v(\dif y)
+    \]
+\end{note}
+
+\begin{note}{Prop 9.12}
+    Proof of (i). Trick: When finding the \emph{law} of some random variable $X$, check $\mathbb{E}[\varphi(X)]$ for every \emph{nonnegative measurable} function $\varphi$ (in order to use Fubini theorem). Same trick is used at the \emph{Example} on p.~174.
+\end{note}
+
+\begin{note}{Thm 9.13}
+    Derive the last equation. Denote $X=X_1+\cdots +X_n, \text{var}(X)=\mathbb{E}[X^2]-(\mathbb{E}[X])^2$. $\mathbb{E}[X^2]=\text{var}(X)+(\mathbb{E}[X])^2=\text{var}(X)+n^2(\mathbb{E}[X_1])^2$. So
+    \[
+    \begin{aligned}
+    \mathbb{E}\left[
+    \left(
+    \frac{1}{n}X-\mathbb{E}[X_1]
+    \right)^2
+    \right]
+    &=\frac{1}{n^2}\mathbb{E}[X^2]-\frac{2}{n}\mathbb{E}[X]\cdot\mathbb{E}[X_1]+(\mathbb{E}[X_1])^2\\
+    &=\frac{1}{n^2}\text{var}(X)+(\mathbb{E}[X_1])^2-2(\mathbb{E}[X_1])^2+(\mathbb{E}[X_1])^2=\frac{1}{n^2}\text{var}(X) 
+    \end{aligned}
+    \]
+\end{note}
+

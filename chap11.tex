@@ -1,0 +1,60 @@
+\setcounter{section}{10}
+\section{Conditioning}
+
+\begin{note}{Thm 11.3}
+    Note that $\mathbb{E}[X|\mathcal{B}]$ is not derived but defined. There $\exists!\tilde{X}\in L^1(\mathbb{P})$ such that 
+    \[
+    \forall B\in\mathcal{B},\quad \mathbb{E}[X\mathbf{1}_B]=\mathbb{E}[\tilde{X}\mathbf{1}_B]
+    \]
+    The $\exists!$ of $\tilde{X}$ is given by Radon-Nikodym theorem. See $Q(\cdot)=\mathbb{E}[X\mathbf{1}_{\{\cdot\}}]$ as a measure, then $Q\ll \mathbb{P}$. So $\exists!\tilde{X}\in L^1$ such that
+    \[
+    \forall B\in\mathcal{B},\quad Q(B)=\int_B \tilde{X}\dif \mathbb{P}=\mathbb{E}[\tilde{X}\mathbf{1}_B]
+    \]
+    Finally $\mathbb{E}[X|\mathcal{B}]:=\tilde{X}.$
+\end{note}
+
+\begin{note}{p.~232}
+    Example. Recall \hyperref[p.~80]{p.~80}, $\mathbb{E}[f|\mathcal{B}]$ is the Radon-Nikodym derivative of $\mathbb{P}$ with respect to $Q$.
+    \[
+    I_i^{(n)}:=\left( \frac{i-1}{n},\frac{i}{n} \right]
+    \]
+    So 
+    \[
+    \mathbb{E}[f|\mathcal{B}]=\sum_{i=1}^n \mathbf{1}_{I_i^{(n)}}\frac{Q(I_i^{(n)})}{\mathbb{P}(I_i^{(n)})}
+    \]
+    where
+    \[
+    \frac{Q(I_i^{(n)})}{\mathbb{P}(I_i^{(n)})}=\frac{\mathbb{E}[f\mathbf{1}_{I_i^{(n)}}]}{1/n}=n\cdot \int_{I_i^{(n)}}f(\omega)\dif\omega
+    \]
+\end{note}
+
+\begin{note}{p.~234}
+    (d) is not trivial. To show $X=\lim \uparrow X_n\implies \mathbb{E}[X|\mathcal{B}]=\lim\uparrow\mathbb{E}[X_n|\mathcal{B}]$, a.s., first denote $X'=\lim\uparrow\mathbb{E}[X_n|\mathcal{B}]$, then show by definition that $X'=\mathbb{E}[X|\mathcal{B}]$.
+
+    (e) To show the third inequality
+    \[
+    \inf_{n\ge k}X_n\le X_n
+    \implies \mathbb{E}[\inf_{n\ge k}X_n|\mathcal{B}]\le\mathbb{E}[X_n|\mathcal{B}]
+    \implies \mathbb{E}[\inf_{n\ge k}X_n|\mathcal{B}]\le\inf_{n\ge k}\mathbb{E}[X_n|\mathcal{B}]
+    \]
+\end{note}
+
+\begin{note}{Prop 11.6}
+    By (11.3), $\mathbb{E}[Z(YX)]=\mathbb{E}[Z\cdot\mathbb{E}[YX|\mathcal{B}]]$. Also $\mathbb{E}[Z(Y \mathbb{E}[X | \mathcal{B}])]=\mathbb{E}[Z (Y X)]$, so $Y \mathbb{E}[X | \mathcal{B}]=\mathbb{E}[YX|\mathcal{B}]$.
+\end{note}
+
+\begin{note}{p.~240}
+    In the Remark, the point is $X\perp Y\iff \forall h\in L^1(\mathcal{B}(\mathbb{R})), \mathbb{E}[h(X)|Y]=\mathbb{E}[h(X)]$. $h(X)=X$ is only one special case, and the converse does not hold.
+\end{note}
+
+\begin{note}{Prop 11.10}
+    $\mathbb{E}\left[Z \mid \mathcal{H}_{1} \vee \mathcal{H}_{2}\right]$ is defined using (11.1),
+    \[
+    \mathbb{E}[Z\mathbf{1}_A]=\mathbb{E}\bigg[\mathbb{E}\left[Z \mid \mathcal{H}_{1} \vee \mathcal{H}_{2}\right]\mathbf{1}_B\bigg],\quad \forall A\in\mathcal{H}_{1} \vee \mathcal{H}_{2}
+    \]
+    So it suffices to show $\mathbb{E}[Z\mathbf{1}_A]=\mathbb{E}\bigg[\mathbb{E}\left[Z \mid \mathcal{H}_{1}\right]\mathbf{1}_B\bigg]$ also holds.
+\end{note}
+
+\begin{note}{Prop 11.11}
+    See Def 8.2, the law of $X|Y=y$ is a pushforward of measure. $v(y,\cdot)$ is the conditional distribution (law) of $X$ given $Y=y$. 
+\end{note}
